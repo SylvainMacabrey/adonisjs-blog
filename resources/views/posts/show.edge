@@ -1,0 +1,23 @@
+@layout('base')
+
+@section('content')
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <a href="/">Retour</a>
+      <div class="icon-block">
+        <h2 class="center brown-text"><i class="material-icons">{{ post.title }}</i></h2>
+        <h5 class="center">Mis à jour le {{ post.updated_at }}</h5>
+        <p class="light">{{ post.body }}</p>
+      </div>
+      <div>
+        <a href="/posts/edit/{{ post.id }}" class="waves-effect waves-light btn-large" style="display:inline-block;">Modifier</a>
+        <form action="{{ '/posts/' + post.id + '?_method=DELETE' }}" method="POST" style="display:inline-block;">
+          {{ csrfField() }}
+          <button class="waves-effect waves-light btn-large btn-delete">Supprimer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

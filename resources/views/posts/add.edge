@@ -1,0 +1,28 @@
+@layout('base')
+
+@section('content')
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <a href="/">Retour</a>
+      <form class="col s12" action="/posts" method="POST">
+        {{ csrfField() }}
+        <h2 class="center brown-text"><i class="material-icons">Ajouter un post</i></h2>
+        <div class="row">
+          <div class="input-field inline col s12">
+            <input id="title" name="title" type="text" class="validate" value="{{ old(('title', '')) }}">
+            {{ elIf('<span class="helper-text red-text lighten-1">$self</span>', getErrorFor('title'), hasErrorFor('title')) }}
+            <label for="title">Titre</label>
+          </div>
+          <div class="input-field inline col s12">
+            <textarea id="body" name="body" class="materialize-textarea validate">{{ old(('body', '')) }}</textarea>
+            {{ elIf('<span class="helper-text red-text lighten-1">$self</span>', getErrorFor('body'), hasErrorFor('body')) }}
+            <label for="body">Contenu</label>
+          </div>
+        </div>
+        <button class="waves-effect waves-light btn" type="submit">Enregistrer</button>
+      </form>
+    </div>
+  </div>
+</div>
+@endsection
